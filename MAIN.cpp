@@ -1,7 +1,7 @@
 #include"../pipiLib/pch.h"
 #include"../pipiLib/WINDOW.h"
 #include"../pipiLib/GRAPHIC.h"
-#include"SQUARE.h"
+#include"STATIC_MESH.h"
 
 int MAIN()
 {
@@ -10,7 +10,7 @@ int MAIN()
     w.create(L"pipi");
     g.create();
 
-    SQUARE square(L"assets/penguin1.png");
+    STATIC_MESH mesh;
     MATRIX world;
     float r = 0.0f;
 
@@ -20,8 +20,8 @@ int MAIN()
 
         world.rotateY(r);
         r += 0.01f;
-        square.update(world);
-        square.draw();
+        mesh.update(world);
+        mesh.draw();
         
         g.present();
     }

@@ -2,12 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="MAIN.cpp" />
-    <ClCompile Include="SQUARE.cpp" />
+    <ClCompile Include="STATIC_MESH.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SQUARE.h" />
+    <ClInclude Include="STATIC_MESH.h" />
   </ItemGroup>
 </Project>
