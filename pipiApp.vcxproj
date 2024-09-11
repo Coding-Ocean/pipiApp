@@ -128,7 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MAIN.cpp" />
-    <ClCompile Include="STATIC_MESH.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -137,9 +136,6 @@
     <ProjectReference Include="..\pipiLib\pipiLib.vcxproj">
       <Project>{a8ee7b80-25aa-4d7f-9d9d-41e228505f33}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="STATIC_MESH.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
 #include"../pipiLib/pch.h"
 #include"../pipiLib/WINDOW.h"
 #include"../pipiLib/GRAPHIC.h"
-#include"STATIC_MESH.h"
+#include"../pipiLib/STATIC_MESH.h"
 
 int MAIN()
 {
@@ -10,20 +10,29 @@ int MAIN()
     w.create(L"pipi");
     g.create();
 
-    STATIC_MESH mesh;
-    MATRIX world;
-    float r = 0.0f;
+    {
+        FLOAT3 eye = { 0, 0, 8 }, focus = { 0, 0, 0 }, up = { 0, 1, 0 };
+        g.setView(eye, focus, up);
 
-    while (!w.quit()) {
-        g.clear(0.25f,0.5f,0.9f);
-        g.setPipeline();
+        //mesh
+        STATIC_MESH mesh;
+        mesh.create("assets/cube.txt");
+        MATRIX world;
+        float r = 0.0f;
 
-        world.rotateY(r);
-        r += 0.01f;
-        mesh.update(world);
-        mesh.draw();
-        
-        g.present();
+        while (!w.quit()) {
+            //update
+            world.identity();
+            world.mulRotateY(r);
+            world.mulRotateX(r/2);
+            r += 0.01f;
+            mesh.update(world);
+            //draw
+            g.clear(0.25f, 0.5f, 0.9f);
+            g.setPipeline();
+            mesh.draw();
+            g.present();
+        }
     }
 
     g.destroy();
