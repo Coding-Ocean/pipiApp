@@ -11,31 +11,44 @@ int MAIN()
     w.create(L"pipi");
     g.create();
 
-    createVtxSphere(0.5f, 30);
-    createVtxCube(0.5f);
+    createCubeText(0.5f/2);
+    createSphereText(0.5f,48);
 
     {
-        FLOAT3 eye = { 0, 0, 2 }, focus = { 0, 0, 0 }, up = { 0, 1, 0 };
+        FLOAT3 eye = { 0, 1, 3 }, focus = { 0, 0, 0 }, up = { 0, 1, 0 };
         g.setView(eye, focus, up);
 
         //mesh
-        STATIC_MESH mesh;
-        mesh.create("assets/sphere.txt");
+        STATIC_MESH mesh1;
+        mesh1.createFromText(L"assets/cube.txt");
+        STATIC_MESH mesh2;
+        mesh2.createFromText(L"assets/sphere.txt");
+
         MATRIX world;
         float r = 0.0f;
 
-        while (!w.quit()) {
+        while (!w.quit()) 
+        {
             //update
             world.identity();
-            //world.mulRotateX(0.1f);
+            world.mulTranslate(0.8f, 0, 0);
+            world.mulRotateZ(r);
             world.mulRotateY(r);
-            //world.mulRotateX(0.5f);
+            mesh1.update(world);
+
+            world.identity();
+            world.mulTranslate(-0.8f, 0, 0);
+            world.mulRotateZ(-23.4f * 3.141592f / 180);
+            world.mulRotateY(r);
+            mesh2.update(world);
+
             r += 0.01f;
-            mesh.update(world);
+
             //draw
-            g.clear(0.1f, 0.1f, 0.15f);
+            g.clear(0.1f, 0.12f, 0.12f);
             g.setPipeline();
-            mesh.draw();
+            mesh1.draw();
+            mesh2.draw();
             g.present();
         }
     }
